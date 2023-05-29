@@ -11,10 +11,8 @@ const Dashboard = () => {
   const time = curHr < 12 ?"Morning" : curHr < 18 ? "Afternoon": "Evening"     
 
   return (
-    <Box m="20px">
-      
-        <Header title="Dashboard" date={today.toDateString()} subTitle={`Good ${time}, you are welcome.`}/>
-      
+    <Box m="20px">      
+        <Header title="Dashboard"  subTitle={`Good ${time}, you are welcome.`}/>      
     </Box>   
   )
 }

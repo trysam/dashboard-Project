@@ -1,8 +1,7 @@
 import { Typography, Box, useTheme } from "@mui/material"
 import { tokens } from "../theme"
-
-
-const Header = ({title, subTitle, date}) => {
+  
+const Header = ({title, subTitle}) => {
     const theme = useTheme();
     const Colors = tokens(theme.palette.mode);
 
@@ -19,9 +18,9 @@ const Header = ({title, subTitle, date}) => {
             <Typography 
                 variant="h5" 
                 color={Colors.grey[100]} 
-                mr="20px"             
+                mr="15px"             
             >
-                {date}
+                {new Date().toDateString()}
             </Typography>
 
         </Box>    

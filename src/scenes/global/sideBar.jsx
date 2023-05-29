@@ -1,6 +1,5 @@
 import { Box, IconButton, Typography, colors, useTheme } from "@mui/material"
 import { useState } from "react"
-import { Link } from "react-router-dom";
 import {Sidebar, Menu, MenuItem, menuClasses} from "react-pro-sidebar"
 import { tokens } from "../../theme"
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
@@ -25,11 +24,10 @@ const Item = ({title, to, icon, selected, setSelected}) => {
       active={selected === title}
       style={{color:Colors.grey[100]}}
       onClick ={() => setSelected(title)}
-      icon = {icon}           
+      icon = {icon} 
+      href={to}          
     >
       <Typography sx={{":hover":{color:"#6870fa"}}}>{title}</Typography>
-      <Link to={to} />
-    
     </MenuItem>
   )  
 }
@@ -134,7 +132,7 @@ const SideBarComponent = () => {
               </Typography>
               <Item 
                 title="Manage People"
-                to="/people"
+                to="/team"
                 icon={<PeopleOutlinedIcon/>} 
                 selected={selected}
                 setSelected={setSelected}   
