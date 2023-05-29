@@ -1,10 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import { DataGrid , GridToolbar} from '@mui/x-data-grid';
+import { DataGrid} from '@mui/x-data-grid';
 import { tokens } from "../../theme";
 import {mockDataInvoices} from "../../data/mockData";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
-import SecurityOutlinedIcon from '@mui/icons-material/SecurityOutlined';
 import Header from "../../components/header";
 
 
@@ -16,34 +13,20 @@ const Invoices = () => {
     const columns = [
         {field:"id", headerName:"ID"},
         {field:"name", headerName:"Name", flex:1, cellClassName:"name-column--cell"},
-        {field:"age", headerName:"Age", type:"number", headerAlign:"left", align:"left", editable:true},
-        {field:"phone", headerName:"Phone Number", flex:1},
         {field:"email", headerName:"Email", flex:1},
-        {filed:"access", headerName:"Access", flex:1, headerAlign:"center", renderCell:({row: {access}}) => {
+        {filed:"cost", headerName:"Cost", flex:1, align:"center", renderCell:(params) => {
           return(
-            <Box 
-            display="flex" 
-            width="60%"
-            m="0 auto"
-            p="5px"
-            justifyContent="center"
-            backgroundColor={
-              access === "admin" ? Colors.greenAccent[600] : Colors.greenAccent[700]
-            }
-            borderRadius="7px"          
-            >
-              {access === "admin" && <AdminPanelSettingsOutlinedIcon/>}
-              {access === "manager" && <SecurityOutlinedIcon/>}
-              {access === "user" && <LockOpenOutlinedIcon/>}
-              <Typography color={Colors.grey[100]} sx={{ml:"5px"}}>{access}</Typography>
-            </Box>
+              <Typography color={Colors.greenAccent[500]} >
+                ${params.row.cost}
+              </Typography>          
           )
-        }}
+        }},
+        {field:"date", headerName:"Date", flex:1},
     ]
 
   return (
     <Box sx={{m:"20px"}}>
-        <Header title="TEAM" subTitle="Managing the Team Members" />
+        <Header title="INVOICES" subTitle="List of Invoice Balance" />
         <Box 
           mt="40px" 
           height="75vh"
@@ -65,13 +48,16 @@ const Invoices = () => {
               backgroundColor: Colors.primary[400]
             },
             "& .MuiDataGrid-footerContainer":{
-              borderTop:"none",
-              backgroundColor: Colors.blueAccent[700]
+                borderTop:"none",
+                backgroundColor: Colors.blueAccent[700]
+              },  
+            "& .MuiCheckbox-root":{
+              color: Colors.greenAccent[200]
             }
 
           }}
         >
-            <DataGrid rows={mockDataInvoices} columns={columns}></DataGrid>
+            <DataGrid checkboxSelection rows={mockDataInvoices} columns={columns}></DataGrid>
         </Box>
     </Box>
     
