@@ -1,4 +1,5 @@
-import { Box, IconButton, Typography, colors, useTheme } from "@mui/material"
+import { Box, IconButton, Typography, useTheme} from "@mui/material"
+import { Link } from "react-router-dom"
 import { useState } from "react"
 import {Sidebar, Menu, MenuItem, menuClasses} from "react-pro-sidebar"
 import { tokens } from "../../theme"
@@ -20,15 +21,17 @@ const Item = ({title, to, icon, selected, setSelected}) => {
   const Colors = tokens(theme.palette.mode);
 
   return (
+    <div>
     <MenuItem 
       active={selected === title}
       style={{color:Colors.grey[100]}}
       onClick ={() => setSelected(title)}
       icon = {icon} 
-      href={to}          
+      component={<Link to={to} className="link"/>}                  
     >
-      <Typography sx={{":hover":{color:"#6870fa"}}}>{title}</Typography>
+      <Typography sx={{":hover":{color:"#6870fa"}}}>{title}</Typography>     
     </MenuItem>
+    </div>
   )  
 }
 
@@ -58,6 +61,8 @@ const SideBarComponent = () => {
               color:"#6870fa",         
             },                      
           }}
+
+          
         >
           {/*LOGO and MENU ICON*/}
           <MenuItem             
@@ -98,7 +103,7 @@ const SideBarComponent = () => {
                 <Typography
                   variant="h3" 
                   textAlign="center" 
-                  color={colors.grey[400]} 
+                  color={Colors.grey[400]} 
                   fontWeight="bold"
                   sx={{m: "10px 0 0 0"}} 
                 >
@@ -166,7 +171,7 @@ const SideBarComponent = () => {
               />
               <Item 
                 title="Calendar"
-                to="/form"
+                to="/calendar"
                 icon={<CalendarTodayOutlinedIcon/>} 
                 selected={selected}
                 setSelected={setSelected}   
