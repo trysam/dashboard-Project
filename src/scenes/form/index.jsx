@@ -49,8 +49,7 @@ const Form= () => {
           <form onSubmit={handleSubmit}>
             <Box 
               display="grid" 
-              gap="30px" 
-              
+              gap="30px"               
               sx={{
                 "& > div": {gridColumn: isNonMobile ? undefined : "span 4"}
               }}
